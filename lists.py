@@ -1,3 +1,4 @@
+from encodings.punycode import selective_find
 from typing import Any
 
 
@@ -7,7 +8,7 @@ class Node:
     Also works as an Iterator
     """
 
-    def __init__(self, data = None) -> None:
+    def __init__(self, data=None) -> None:
         self.data = data
         self.next = None
 
@@ -92,11 +93,41 @@ class Node:
         if self.data is None:
             self.data = data
             return
+
         node = Node(data)
         node.next = self.next
         self.next = node
         self.data, self.next.data = self.next.data, self.data
         return
+
+    def __reversed__(self) -> 'Node':
+        """
+         Reverse the list
+
+        >>> LinkedList = Node(1)
+        >>> LinkedList.append(2)
+        >>> LinkedList
+        [1, 2]
+        >>> reversed_list = reversed(LinkedList)
+        >>> reversed_list
+        [2, 1]
+
+        :return: Head of the reversed list
+        """
+        if self.data is None:
+            return self
+
+        if self.next is None:
+            return self
+
+        prev = None
+        current = self
+        while current:
+            next_node = current.next
+            current.next = prev
+            prev = current
+            current = next_node
+        return prev
 
     def __iter__(self) -> 'Node':
         """
@@ -159,14 +190,14 @@ class Node:
 
         :return: A string representation of the list
         """
-        selflist = []
+        self_list = []
         if self.data is None:
-            return str(selflist)
+            return str(self_list)
         temp = self
         while temp:
-            selflist.append(temp.data)
+            self_list.append(temp.data)
             temp = temp.next
-        return str(selflist)
+        return str(self_list)
 
     def __repr__(self) -> str:
         """
@@ -179,4 +210,5 @@ class Node:
 
 if __name__ == '__main__':
     import doctest
+
     doctest.testmod()
