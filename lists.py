@@ -1,4 +1,3 @@
-from encodings.punycode import selective_find
 from typing import Any
 
 
