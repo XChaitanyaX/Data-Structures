@@ -7,11 +7,11 @@ class Node:
     Also works as an Iterator
     """
 
-    def __init__(self, data=None) -> None:
-        self.data = data
+    def __init__(self, val=None) -> None:
+        self.val = val
         self.next = None
 
-    def append(self, data: Any) -> None:
+    def append(self, val: Any) -> None:
         """
         Add node to the end of the list
         This is a recursive method may take long time for appending for a large list
@@ -24,18 +24,18 @@ class Node:
         >>> LinkedList
         [1, 2]
 
-        :param data: The value to be added to the end of the list
+        :param val: The value to be added to the end of the list
         :return: None
         """
-        if self.data is None:
-            self.data = data
+        if self.val is None:
+            self.val = val
             return
 
         if self.next is None:
-            self.next = Node(data)
+            self.next = Node(val)
             return
 
-        self.next.append(data)
+        self.next.append(val)
 
     def pop(self) -> Any:
         """
@@ -59,23 +59,23 @@ class Node:
         :return: The value of the popped node
         """
 
-        if self.data is None:
+        if self.val is None:
             raise IndexError("Can't pop from empty list")
 
         if self.next is None:
-            value = self.data
-            self.data = None
+            value = self.val
+            self.val = None
             self.next = None
             return value
 
         temp = self
         while temp.next.next:
             temp = temp.next
-        value = temp.next.data
+        value = temp.next.val
         temp.next = None
         return value
 
-    def push(self, data: Any) -> None:
+    def push(self, val: Any) -> None:
         """
         Add node to the start of the list
 
@@ -86,17 +86,17 @@ class Node:
         >>> LinkedList
         [2, 1]
 
-        :param data: The value to be added to the start of the list
+        :param val: The value to be added to the start of the list
         :return: None
         """
-        if self.data is None:
-            self.data = data
+        if self.val is None:
+            self.val = val
             return
 
-        node = Node(data)
+        node = Node(val)
         node.next = self.next
         self.next = node
-        self.data, self.next.data = self.next.data, self.data
+        self.val, self.next.val = self.next.val, self.val
         return
 
     def __reversed__(self) -> 'Node':
@@ -113,7 +113,7 @@ class Node:
 
         :return: Head of the reversed list
         """
-        if self.data is None:
+        if self.val is None:
             return self
 
         if self.next is None:
@@ -176,7 +176,7 @@ class Node:
 
         temp = self.current
         self.current = temp.next
-        return temp.data
+        return temp.val
 
     def __str__(self) -> str:
         """
@@ -190,11 +190,11 @@ class Node:
         :return: A string representation of the list
         """
         self_list = []
-        if self.data is None:
+        if self.val is None:
             return str(self_list)
         temp = self
         while temp:
-            self_list.append(temp.data)
+            self_list.append(temp.val)
             temp = temp.next
         return str(self_list)
 
