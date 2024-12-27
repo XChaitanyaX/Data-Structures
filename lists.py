@@ -18,10 +18,10 @@ class Node:
 
         >>> LinkedList = Node()
         >>> LinkedList.append(1)
-        >>> LinkedList
+        >>> print(LinkedList)
         [1]
         >>> LinkedList.append(2)
-        >>> LinkedList
+        >>> print(LinkedList)
         [1, 2]
 
         :param val: The value to be added to the end of the list
@@ -43,13 +43,13 @@ class Node:
 
         >>> LinkedList = Node(1)
         >>> LinkedList.append(2)
-        >>> LinkedList
+        >>> print(LinkedList)
         [1, 2]
         >>> LinkedList.pop()
         2
         >>> LinkedList.pop()
         1
-        >>> LinkedList
+        >>> print(LinkedList)
         []
         >>> LinkedList.pop()
         Traceback (most recent call last):
@@ -80,10 +80,10 @@ class Node:
         Add node to the start of the list
 
         >>> LinkedList = Node(1)
-        >>> LinkedList
+        >>> print(LinkedList)
         [1]
         >>> LinkedList.push(2)
-        >>> LinkedList
+        >>> print(LinkedList)
         [2, 1]
 
         :param val: The value to be added to the start of the list
@@ -105,10 +105,10 @@ class Node:
 
         >>> LinkedList = Node(1)
         >>> LinkedList.append(2)
-        >>> LinkedList
+        >>> print(LinkedList)
         [1, 2]
         >>> reversed_list = reversed(LinkedList)
-        >>> reversed_list
+        >>> print(reversed_list)
         [2, 1]
 
         :return: Head of the reversed list
@@ -134,7 +134,7 @@ class Node:
 
         >>> LinkedList = Node(1)
         >>> LinkedList.append(2)
-        >>> LinkedList
+        >>> print(LinkedList)
         [1, 2]
         >>> iterator = iter(LinkedList)
         >>> next(iterator)
@@ -157,7 +157,7 @@ class Node:
 
         >>> LinkedList = Node(1)
         >>> LinkedList.append(2)
-        >>> LinkedList
+        >>> print(LinkedList)
         [1, 2]
         >>> iterator = iter(LinkedList)
         >>> next(iterator)
@@ -200,14 +200,22 @@ class Node:
 
     def __repr__(self) -> str:
         """
-        same as __str__() method
+        Representation of the LinkedList
+
+        >>> LinkedList = Node(10)
+        >>> LinkedList.append(20)
+        >>> LinkedList.append(30)
+        >>> LinkedList
+        10->20->30
+        >>> reversed_list = reversed(LinkedList)
+        >>> reversed_list
+        30->20->10
 
         :return: A string representation of the LinkedList
         """
-        return self.__str__()
+        return "->".join(str(i) for i in self)
 
 
 if __name__ == '__main__':
     import doctest
-
     doctest.testmod()
