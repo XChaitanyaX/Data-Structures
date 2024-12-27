@@ -294,7 +294,7 @@ class Node:
         else:
             raise AttributeError(f"'{type(self).__name__}' object has no attribute '{item}'")
 
-    def __len__(self):
+    def __len__(self) -> int:
         """
         Returns the length of the linked-list
 
