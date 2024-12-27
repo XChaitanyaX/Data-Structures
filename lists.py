@@ -215,6 +215,99 @@ class Node:
         """
         return "->".join(str(i) for i in self)
 
+    def __getitem__(self, index: int) -> Any:
+        """
+        returns the value of the node at the given index
+
+        >>> LinkedList = Node(1)
+        >>> LinkedList.append(2)
+        >>> LinkedList.append(3)
+        >>> LinkedList[0]
+        1
+        >>> LinkedList[2]
+        3
+        >>> LinkedList[3]
+        Traceback (most recent call last):
+        ...
+        IndexError: Index out of range
+
+        :param index: The index of the node to be returned
+        :return: val of the node at the given index
+        """
+        if index < 0:
+            raise IndexError("Index out of range")
+        temp = self
+        for _ in range(index):
+            if temp.next is None:
+                raise IndexError("Index out of range")
+            temp = temp.next
+        return temp.val
+
+    def __setitem__(self, key, value) -> None:
+        """
+        Set item at the given index
+
+        >>> LinkedList = Node(1)
+        >>> LinkedList.append(2)
+        >>> LinkedList
+        1->2
+        >>> LinkedList[0] = 2
+        >>> LinkedList
+        2->2
+        >>> LinkedList[2] = 4
+        Traceback (most recent call last):
+        ...
+        IndexError: Index out of range
+
+        :param key: Index of the node to be updated
+        :param value: Value to be set at the given index
+        :return: None
+        """
+        if key < 0:
+            raise IndexError("Index out of range")
+        temp = self
+        for _ in range(key):
+            if temp.next is None:
+                raise IndexError("Index out of range")
+            temp = temp.next
+        temp.val = value
+        return
+
+    def __getattr__(self, item: str) -> Any:
+        """
+        Return the value of the given attribute
+
+        >>> LinkedList = Node(1)
+        >>> getattr(LinkedList, 'val')
+        1
+        >>> getattr(LinkedList, 'next')
+        >>> getattr(LinkedList, 'abc')
+        Traceback (most recent call last):
+        ...
+        AttributeError: 'Node' object has no attribute 'abc'
+
+        :param item: Attribute name
+        :return: value of the given attribute
+        """
+        if item in self.__dict__:
+            return self.item
+        else:
+            raise AttributeError(f"'{type(self).__name__}' object has no attribute '{item}'")
+
+    def __len__(self):
+        """
+        Returns the length of the linked-list
+
+        >>> LinkedList = Node(1)
+        >>> LinkedList.append(2)
+        >>> LinkedList.append(3)
+        >>> len(LinkedList)
+        3
+
+        :return: No of nodes in the list
+        """
+        return sum(1 for _ in self)
+
 
 if __name__ == '__main__':
     import doctest
