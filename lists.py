@@ -16,7 +16,10 @@ class Node:
     def append(self, val: Any) -> None:
         """
         Add node to the end of the list
-        This is a recursive method may take long time for appending for a large list
+        This is a recursive method may take long time for appending for a large list.
+        Make sure to change the implementation if you are using this method for a large list.
+        Also see the sys.setrecursionlimit() method to increase the recursion limit if needed.
+        Default value of recursion limit depends on the platform, check sys.getrecursionlimit() for more details.
 
         >>> LinkedList = Node()
         >>> LinkedList.append(1)
