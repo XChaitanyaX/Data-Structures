@@ -298,6 +298,8 @@ class Node:
         """
         Returns the length of the linked-list
 
+        replicates the built-in len() function
+
         >>> LinkedList = Node(1)
         >>> LinkedList.append(2)
         >>> LinkedList.append(3)
@@ -308,6 +310,30 @@ class Node:
         """
         return sum(1 for _ in self)
 
+    def __dir__(self):
+        return [
+            'val', 'next', 'append', 'pop', 'push', '__reversed__', '__iter__', '__next__', '__str__', '__repr__',
+        ]
+
+    def __contains__(self, item: Any) -> bool:
+        """
+        Replicates the built-in 'in' operator for linked-list
+
+        >>> LinkedList = Node(1)
+        >>> LinkedList.append(2)
+        >>> 1 in LinkedList
+        True
+        >>> 3 in LinkedList
+        False
+
+        :param item: item to be checked if present in the list
+        :return: True if item is present else False
+        """
+
+        for i in self:
+            if i == item:
+                return True
+        return False
 
 if __name__ == '__main__':
     import doctest
