@@ -326,7 +326,7 @@ class Node:
         >>> 3 in LinkedList
         False
 
-        :param item: item to be checked if present in the list
+        :param item: value to be checked
         :return: True if item is present else False
         """
 
