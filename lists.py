@@ -6,7 +6,7 @@ class Node:
     An implementation of a list using LinkedList
     Also works as an Iterator
 
-    Supports most (I mean only some) of the built-in functions of a list
+    Supports most (I mean only some) of the built-in operations of a list
     """
 
     def __init__(self, val=None) -> None:
